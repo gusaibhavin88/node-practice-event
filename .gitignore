@@ -1,6 +1,6 @@
 # Node modules
 node_modules/
-
+uploads/
 # Logs
 logs
 *.log
@@ -11,6 +11,9 @@ logs
 # Build output
 dist/
 build/
+
+uploads/
+
 
 # OS generated files
 .DS_Store
