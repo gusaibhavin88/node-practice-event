@@ -4,7 +4,6 @@ const User = require("../Schema/userSchema");
 exports.authMiddleware = async (req, res, next) => {
   try {
     let token = req?.headers?.token || req?.headers?.authorization;
-
     if (!token) {
       res.status(400).json({ message: "unauthotized" });
     }

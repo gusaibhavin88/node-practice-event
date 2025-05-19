@@ -6,8 +6,9 @@ const {
 } = require("../controller/event.controller");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { upload } = require("../utility/multer");
-
 const eventRouter = require("express").Router();
+
+eventRouter.use(authMiddleware);
 
 eventRouter.post("/create", upload.array("imagesUrl"), create);
 eventRouter.post("/get/:id", getEvent);

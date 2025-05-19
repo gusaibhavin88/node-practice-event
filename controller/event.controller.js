@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
       imagesUrl: fileUrl,
       startDate,
       endDate,
-      userId: user?._id,
+      userId: req?.user?._id,
     });
     res.status(201).json({
       success: true,
@@ -82,8 +82,8 @@ exports.listEvent = async (req, res) => {
         },
       },
     ];
-
-    const [users, totalDocuments] = await Promise.all([
+    console.log(sortObject, "jnjjjj");
+    const [events, totalDocuments] = await Promise.all([
       Event.find().sort(sortObject).skip(skip).limit(itemPerPage).lean(),
       Event.find({}).countDocuments(),
     ]);
@@ -91,7 +91,7 @@ exports.listEvent = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      data: { users, totalPages },
+      data: { events, totalPages },
       message: "Event fetched successfully",
     });
   } catch (error) {
