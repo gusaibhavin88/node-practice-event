@@ -11,7 +11,7 @@ const eventRouter = require("express").Router();
 eventRouter.use(authMiddleware);
 
 eventRouter.post("/create", upload.array("imagesUrl"), create);
-eventRouter.post("/get/:id", getEvent);
+eventRouter.get("/get/:id", getEvent);
 eventRouter.delete("/:id", deleteEvent);
 eventRouter.get("/list", listEvent);
 module.exports = eventRouter;

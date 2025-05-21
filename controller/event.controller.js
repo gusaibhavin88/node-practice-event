@@ -27,6 +27,13 @@ exports.create = async (req, res) => {
 
 exports.getEvent = async (req, res) => {
   try {
+    const { id } = req?.params;
+    const event = await Event.findById(id);
+    res.status(201).json({
+      success: true,
+      data: event,
+      message: "Event data fetched successfully.",
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
@@ -34,8 +41,6 @@ exports.getEvent = async (req, res) => {
 
 exports.deleteEvent = async (req, res) => {
   try {
-    console.log("jjkjhn", req?.params?.id);
-
     await Event.findOneAndUpdate(
       { _id: req?.params?.id },
       {
